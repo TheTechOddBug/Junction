@@ -146,8 +146,6 @@ const excluded_apps = [
 function getApplications(content_type) {
   const applications = Gio.AppInfo.get_recommended_for_type(content_type);
   return applications.filter((appInfo) => {
-    const id = appInfo.get_id();
-    const noDisplay = Gio.DesktopAppInfo.new(id)?.get_boolean("NoDisplay") ?? false;
-    return !excluded_apps.includes(id) && !noDisplay;
+    return !excluded_apps.includes(appInfo.get_id()) && appInfo.should_show();
   });
 }
