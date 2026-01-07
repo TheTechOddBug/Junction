@@ -3,14 +3,6 @@ import Gio from "gi://Gio";
 import GioUnix from "gi://GioUnix";
 import Xdp from "gi://Xdp";
 
-export function logEnum(obj, value) {
-  console.log(
-    Object.entries(obj).find(([k, v]) => {
-      return v === value;
-    })[0],
-  );
-}
-
 export function spawn_sync(command_line) {
   return GLib.spawn_command_line_sync(prefixCommandLineForHost(command_line));
 }
@@ -199,7 +191,6 @@ export function openWithApplication({ appInfo, location, content_type }) {
 // let's hope this doesn't break...
 const textDecoder = new TextDecoder();
 export function getRealPath(document_path) {
-  console.time("getRealPath");
   const [success, stdout, , status] = spawn_sync(
     `flatpak document-info "${document_path}"`,
   );
@@ -210,8 +201,6 @@ export function getRealPath(document_path) {
   if (!result) return null;
 
   const [, path] = result.match(new RegExp("origin: " + "(.*)" + "\n"));
-
-  console.timeEnd("getRealPath");
 
   return path || null;
 }

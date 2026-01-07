@@ -123,7 +123,7 @@ export function getApplications(content_type) {
   return apps;
 }
 
-console.log(
+console.debug(
   Object.fromEntries(
     ["XDG_DATA_HOME", "XDG_DATA_DIRS"].map((key) => {
       return [key, GLib.getenv(key)];
@@ -145,7 +145,7 @@ async function loadDesktopAppInfoFromFile(file) {
   }
 
   // FIXME
-  app.junction_id = app.get_name(); // no get_id() withn desktopappinfo built from keyfile
+  app.junction_id = file.get_basename(); // no get_id() with desktopappinfo built from keyfile
   app.junction_keyfile = keyfile; // no way to load keyfile from desktopappinfo without reading the file again
   app.junction_filename = file.get_path(); // no get_filename() with desktopappinfo built from keyfile
 
