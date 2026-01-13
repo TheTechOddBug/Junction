@@ -39,7 +39,7 @@ custom_target('gjspack',
     '@OUTDIR@',
   ],
   env: {
-    'GI_TYPELIB_PATH': '$GI_TYPELIB_PATH:/usr/lib/x86_64-linux-gnu/girepository-1.0/'
+    'GI_TYPELIB_PATH': '$GI_TYPELIB_PATH:/usr/lib/aarch64-linux-gnu/girepository-1.0/:/usr/lib/x86_64-linux-gnu/girepository-1.0/'
   },
   install: true,
   install_dir: pkgdatadir,
