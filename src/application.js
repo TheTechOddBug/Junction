@@ -25,6 +25,8 @@ Gio._promisify(
 );
 
 export default function Application() {
+  // portal.set_background_status(_(""), null).catch(console.error);
+
   const application = new Adw.Application({
     application_id: "re.sonny.Junction",
     flags: Gio.ApplicationFlags.HANDLES_OPEN,
